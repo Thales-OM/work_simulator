@@ -1,0 +1,11 @@
+default:
+  interval_type: set
+  interval_size: 5
+  mouse:
+    movement: True
+    left_click: False
+    right_click: False
+  keyboard:
+    keys:
+      - up
+      - down
