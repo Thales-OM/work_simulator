@@ -1,8 +1,12 @@
+import sys
 import time
 import random
 import pyautogui
 from pynput.mouse import Controller as MouseController
-from pynput.keyboard import Listener, KeyCode
+from pynput.keyboard import Listener
+import keyboard
+import threading
+
 
 # Set the time interval between each mouse movement (in seconds)
 time_interval = int(input('Input activity interval (in sec): '))
@@ -22,13 +26,15 @@ def on_press(key):
     global running
 
     # Check if Ctrl+E is pressed to terminate the program
-    if key == KeyCode.from_combinations([('control'), ('e')]):
+    if keyboard.is_pressed('ctrl+e'):
+        print('Exit sequence pressed - terminating process')
         running = False
+        sys.exit()
 
 
-# Start listening for keyboard inputs
+# Start the keyboard listener thread (to work in parallel to main cycle)
 listener = Listener(on_press=on_press)
-listener.start()
+listener_thread = threading.Thread(target=listener.start())
 
 # Infinite loop to simulate mouse movements
 while running:
