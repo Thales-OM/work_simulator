@@ -15,6 +15,10 @@ Clone this repository or download the directory file to your local machine.
 To run the application, follow these steps:
 - Open your terminal (bash).
 - Navigate to the directory where main.py is located.
+- Install the required dependencies by running the following command:
+```bash
+pip install -r requirements.txt
+```
 - Run the application using the following command:
 ```bash
 python main.py
